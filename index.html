@@ -1,32 +1,87 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Code Quiz</title>
-  <link rel="stylesheet" href="Assets/css/style.css">
+  <link rel="stylesheet" href="./Assets/css/style.css">
 </head>
+
 <body>
-    <!-- Start Quiz Button -->
-    <div class="start_btn">
-        <button>Start Quiz</button>
+  <div id="container">
+    <!-- Start Section -->
+    <div id="start">Start Quiz</div>
+
+    <!-- Guide Section -->
+    <div id="guide">
+      <h2>Quiz Guidelines</h2>
+      <h4>1. You have 15 seconds to answer each question. </h4>
+      <h4>2. Once you select an answer, it can not be undone. </h4>
+      <h4>3. For each correct answer, you will get points. </h4>
+      <div id="button">
+        <button id="exit">Exit</button>
+        <button id="continue">Continue</button>
+      </div>
     </div>
 
-    <!-- Info Box -->
-    <div class="info_box">
-        <div class="info_title">
-            <span>Quiz Guidelines</span>
+    <!-- Quiz Section -->
+    <div id="quiz">
+      <div id="quiz_header">
+        <h5>Coding Quiz</h5>
+        <div id="timer">
+          <h6>Time Left</h6>
+          <h6 id="time">00</h6>
         </div>
-        <div class="info_list">
-            <div class="info">1. You have 15 seconds to complete each question.</div>
-            <div class="info">2. Be careful! Once you select an answer, you can not change it.</div>
-            <div class="info">3. For each correct answer, you will reacieve points.</div>
-            <div class="info">4. The quiz ends when all questions are answered or the timer runs out..</div>
-        </div>
+      </div>
+
+      <!-- Quiz Questions -->
+      <div id="question">
+        <h2 id="questionNo">1. </h2>
+        <h2 id="questionText">HTML stands for?</h2>
+      </div>
+      <!-- Quiz Choices -->
+      <div id="optionList">
+        <h4 class="choice_que" id="option1">Hyperlinks and Text Markup Language</h4>
+        <h4 class="choice_que" id="option2">Hyper Text Markup Language</h4>
+        <h4 class="choice_que" id="option3">Hyper Text Making Language</h4>
+        <h4 class="choice_que" id="option4">Hyper Text Mark Language</h4>
+      </div>
+
+      <!-- Answers Section -->
+
+<div id="answersSection">
+  <h3 id="total_correct">1 out of 3</h3>
+  <h3 id="next_question">Next</h3>
+</div>
     </div>
-  <div class="buttons">
-    <button class="quit">Quit</button>
-    <button class="restart">Continue</button>
+    <!-- Results Section -->
+    <div id="result"></div>
+    <form id="highscore-form">
+      <label for="player-name">Player Name:</label>
+      <input type="text" id="player-name" required>
+    
+      <label for="score">Score:</label>
+      <input type="number" id="score" required>
+    
+      <button type="submit">Submit</button>
+    </form>
+    
+    <table id="highscore-table">
+      <thead>
+        <tr>
+          <th>Player Name</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody id="highscore-body">
+        <!-- Highscores will be dynamically added here -->
+      </tbody>
+    </table>
+    
+    <!-- make a form to input intials -->
+
   </div>
+  <script src="Assets/js/script.js"></script>
 
 </body>
-<script src="Assets/js/script.js"></script>
+
 </html>
