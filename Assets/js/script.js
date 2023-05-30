@@ -36,7 +36,7 @@ let playAgain = document.querySelector("#playAgain");
 
 
 //  GET ALL 'H4' FROM QUIZ SECTION MCQS
-let choice_que = document.querySelector(".choice_que");
+let choice_que = document.querySelectorAll(".choice_que");
     
 
 let index = 0;
@@ -99,4 +99,90 @@ continueBtn.addEventListener("click", ()=>{
 
     interval = setInterval(countDown,1000);
     loadData();
+
+    choice_que.forEach(removeActive =>{
+        removeActive.classList.remove("active");
+    })
+
+    total_correct.innerHTML = `${correct = 0} out of ${MCQS.length} Questions`;
 });
+
+choice_que.forEach( (choices,choiceNo) =>{
+    choices.addEventListener("click" , ()=>{
+        choices.classLst.add("active");
+        // check answer
+        if(choiceNo === MCQS[index].answer){
+            correct ++;
+        }
+        else{
+            correct += 0;
+        }
+        clearInterval(interval);
+
+        // disable all options once select an answer
+        for(i= 0; i < 3; i++) {
+            choice_que[i].classList.add("disabled")
+        }
+    })
+});
+
+
+// when you click Next Button
+
+next_question.addEventListener("click" , () =>{
+
+// if index is less then MCQS.length
+if(index !== MCQS.length -1) {
+    index ++;
+    choice_que.forEach(removeActive =>{
+        removeActive.classList.remove("active");
+    })
+
+    // question
+loadData();
+
+
+// result
+total_correct.style.display ="block";
+total_correct.innerHTML = `${correct} out of ${MCQS.length} Questions`;
+clearInterval(interval);
+interval = setInterval(countDown,1000);
+}
+else {
+    index = 0;
+
+
+    // question complete display result
+    clearInterval(interval);
+    quiz.style.display = "none";
+    points.innerHTML = `You got ${correct} out of ${MCQS.length}`;
+    result.style.display = "block";
+
+    }
+    for(i= 0; i < 3; i++) {
+        choice_que[i].classList.remove("disabled")
+}
+
+})
+
+
+// What happens when you click Quit button
+quit.addEventListener("click" , ()=> {
+    start.style.display = "block";
+    result.style.display = "none;"
+});
+
+// What happens when you click start again button
+exit.addEventListener("click" , ()=> {
+    guide.style.display = "block";
+    result.style.display = "none;"
+});
+
+
+
+
+
+
+
+
+// High Score Section
