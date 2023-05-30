@@ -178,11 +178,80 @@ exit.addEventListener("click" , ()=> {
     result.style.display = "none;"
 });
 
+// Highscore
+
+// Retrieve the form and table elements
+const form = document.getElementById('highscore-form');
+const tableBody = document.getElementById('highscore-body');
+
+// Array to store the highscores
+let highscores = [];
+
+// Function to save the highscore
+function saveHighscore(event) {
+  event.preventDefault(); // Prevent form submission
+
+  // Retrieve the player name and score from the form
+  const playerNameInput = document.getElementById('player-name');
+  const scoreInput = document.getElementById('score');
+  const playerName = playerNameInput.value;
+  const score = parseInt(scoreInput.value);
+
+  // Create a highscore object
+  const highscore = { playerName, score };
+
+  // Add the highscore to the array
+  highscores.push(highscore);
+
+  // Sort the highscores in descending order by score
+  highscores.sort((a, b) => b.score - a.score);
+
+  // Clear the form inputs
+  playerNameInput.value = '';
+  scoreInput.value = '';
+
+  // Update the highscore table
+  updateHighscoreTable();
+
+  // Optionally, you can save the highscores to local storage
+  localStorage.setItem('highscores', JSON.stringify(highscores));
+}
+
+// Function to update the highscore table
+function updateHighscoreTable() {
+  // Clear the table body
+  tableBody.innerHTML = '';
+
+  // Iterate over the highscores and create table rows
+  for (let i = 0; i < highscores.length; i++) {
+    const highscore = highscores[i];
+
+    // Create a new table row
+    const row = document.createElement('tr');
+
+    // Create table cells for player name and score
+    const playerNameCell = document.createElement('td');
+    playerNameCell.textContent = highscore.playerName;
+    row.appendChild(playerNameCell);
+
+    const scoreCell = document.createElement('td');
+    scoreCell.textContent = highscore.score;
+    row.appendChild(scoreCell);
+
+    // Append the row to the table body
+    tableBody.appendChild(row);
+  }
+}
+
+// Add a submit event listener to the form
+form.addEventListener('submit', saveHighscore);
+
+// Optionally, you can load highscores from local storage if available
+const savedHighscores = localStorage.getItem('highscores');
+if (savedHighscores) {
+  highscores = JSON.parse(savedHighscores);
+  updateHighscoreTable();
+}
 
 
 
-
-
-
-
-// High Score Section
