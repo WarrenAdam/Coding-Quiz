@@ -67,11 +67,36 @@ exit.addEventListener("click" , ()=> {
 let countDown = ()=>{
     if(timer === 20) {
         clearInterval(interval);
+        next_question.click();
     }
     else {
         timer++;
-        console.log("timer");
+        time.innertext = timer;
     }
 }
 
-setInterval(countDown,1000);
+// setInterval(countDown,1000);
+
+let loadData = ()=> {
+    questionNo.innerText = index + 1 +". ";
+    questionText.innerText = MCQS[index].question;
+    option1.innerText = MCQS[index].choice1;
+    option2.innerText = MCQS[index].choice2;
+    option3.innerText = MCQS[index].choice3;
+    option4.innerText = MCQS[index].choice4;
+
+    // Timer start
+    timer = 0;
+
+}
+
+loadData();
+
+// when you click continue button
+continueBtn.addEventListener("click", ()=>{
+    quiz.style.display = "block";
+    guide.style.display = "none";
+
+    interval = setInterval(countDown,1000);
+    loadData();
+});
