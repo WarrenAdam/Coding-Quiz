@@ -2,7 +2,7 @@
 
 ##Description:
 
-In this challenge, students were asked to create multiple choice code quiz. In this challenge
+In this challenge, students were asked to create multiple choice code quiz. In this challenge, we used HTML, CSS and JavaScript to create a list of questions for users to answer and update therre scores using a highscore list.
 
 ##Acceptance Criteria: 
 
